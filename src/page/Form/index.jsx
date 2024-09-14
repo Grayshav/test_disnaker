@@ -5,73 +5,84 @@ import { useNavigate } from "react-router-dom";
 
 const Form2 = () => {
   const [step, setStep] = useState(1);
+  const [name, setName] = useState('');
+  const [nik, setNIK] = useState('');
+  const [no_wa, setNoWA] = useState('');
   const [formData, setFormData] = useState({
     nik: "",
     name: "",
     no_wa: "",
-    pengaduan: "",
+    body: "",
     lampiran: "",
     pengadu_id: "",
-    kategori_id: "",
+    kategori_id: "2",
   });
+
   const [error, setError] = useState(null);
-  const [pengaduList, setPengaduList] = useState([]);
-  const [kategoriList, setKategoriList] = useState([]);
+  // const [pengaduList, setPengaduList] = useState([]);
+  // const [kategoriList, setKategoriList] = useState([]);
   const Navigate = useNavigate();
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/pengadu")
-      .then((res) => res.json())
-      .then((data) => setPengaduList(data))
-      .then((err) => console.log(err));
-  });
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:8000/api/pengadu")
+  //     .then((res) => res.json())
+  //     .then((data) => setPengaduList(data))
+  //     .then((err) => console.log(err));
+  // });
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/kategori")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('Fetched kategoriList:', data);
-        if(Array.isArray(data)) {
-          setKategoriList(data);
-        } else{
-          console.log('Data is not an Array:', data);
-        }
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:8000/api/kategori")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log('Fetched kategoriList:', data);
+  //       if(Array.isArray(data)) {
+  //         setKategoriList(data);
+  //       } else{
+  //         console.log('Data is not an Array:', data);
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const handleSubmit1 = async (e) => {
-    e.preventDefault();
-    setError(null);
 
-    const formDataSubmit = new FormData();
-    Object.keys(formData).forEach((key) => {
-      formDataSubmit.append(key, formData[key]);
-    });
-
-    try {
-      const response = await fetch("http://127.0.0.1:8000/api/create_pengadu", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nik: formData.nik,
-          name: formData.name,
-          no_wa: formData.no_wa,
-        }),
-      });
-    console.log("Response", response);
-      if (!response.ok)
-        throw new Error(`HTTP error ! Status ${response.status}`);
+  const handleSubmit1 = () => {
+      localStorage.setItem('name', name);
+      localStorage.setItem('nik', nik);
+      localStorage.setItem('no_wa', no_wa);
       setStep(2);
-    } catch (err) {
-      console.log("Error:", err);
-      setError(err.message);
-    }
-  };
+
+  }
+  //   e.preventDefault();
+  //   setError(null);
+
+  //   const formDataSubmit = new FormData();
+  //   Object.keys(formData).forEach((key) => {
+  //     formDataSubmit.append(key, formData[key]);
+  //   });
+
+  //   try {
+  //     const response = await fetch("http://127.0.0.1:8000/api/create_pengadu", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         nik: formData.nik,
+  //         name: formData.name,
+  //         no_wa: formData.no_wa,
+  //       }),
+  //     });
+  //   console.log("Response", response);
+  //     if (!response.ok)
+  //       throw new Error(`HTTP error ! Status ${response.status}`);
+  //     setStep(2);
+  //   } catch (err) {
+  //     console.log("Error:", err);
+  //     setError(err.message);
+  //   }
+  // };
 
   const handleSubmitStep2 = async (e) => {
     e.preventDefault();
@@ -80,15 +91,17 @@ const Form2 = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          pengaduan: formData.body,
+          nama: localStorage.getItem('name', name),
+          no_wa: localStorage.getItem('no_wa', no_wa),
+          nik: localStorage.getItem('nik', nik),
+          body: formData.body,
           lampiran: formData.lampiran,
-          pengadu_id: formData.pengadu_id,
           kategori_id: formData.kategori_id,
         }),
       });
       if (!response.ok) throw new Error("Gagal Submit Tiket");
-      const result = await response.json();
       alert("Data Berhasil di simpan");
+      localStorage.clear();
       Navigate("/pengadu");
     } catch (error) {
       console.error('Error:', error);
@@ -99,6 +112,7 @@ const Form2 = () => {
   return (
     <>
       <Navbar />
+      {localStorage.clear()}
       <div className="container-fluid mt-5 px-md-5 px-lg-1 px-xl-5 py-5 ">
         <div className="card card0 border-0">
           <div className="row d-flex">
@@ -107,7 +121,7 @@ const Form2 = () => {
                 <div className="container px-5 justify-content-center mt-4 mb-5 border-line">
                   <img
                     src={
-                      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSvNs-twGNEoR_T0o2IvHGuLxV8hE9ijN84SE7lUe-AoBsgEXHU0KWVoMv0shi5rGLZNCmyD9Wvq5Z9AIirGqrHVHt-DKCU9s4O7evIplKcUuOSN4z6e0btsxDAAI6lUe14t6UJ3SUqhM/s16000/Pengaduan+Online.png"
+                      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSvNs-twGNEoR_T0o2IvHGuLxV8hE9ijN84SE7lUe-AoBsgEXHU0KWVoMv0shi5rGLZNCmyD9Wvq5Z9AIirGqrHVHt-DKCU9s4O7evIplKcUuOSN4z6e0btsxDAAI6lUe14t6UJ3SUqhM/s16000/body+Online.png"
                     }
                   />
                 </div>
@@ -120,11 +134,11 @@ const Form2 = () => {
                     <div className="form-group row px-3">
                       <label className="col-form-label text-sm">NIK</label>
                       <input
-                        className="form-control "
+                        className="form-control"
                         type="number"
                         name="nik"
-                        value={formData.nik}
-                        onChange={handleChange}
+                        value={nik}
+                        onChange={(e) => setNIK(e.target.value) }
                         placeholder="Masukkan NIK Anda"
                       />
                     </div>
@@ -134,8 +148,8 @@ const Form2 = () => {
                         className="form-control"
                         type="text"
                         name="name"
-                        value={formData.name}
-                        onChange={handleChange}
+                        value={name}
+                        onChange={(e) => setName(e.target.value) }
                         placeholder="Masukkan nama Anda"
                       />
                     </div>
@@ -147,8 +161,8 @@ const Form2 = () => {
                         className="form-control"
                         type="number"
                         name="no_wa"
-                        value={formData.no_wa}
-                        onChange={handleChange}
+                        value={no_wa}
+                        onChange={(e) => setNoWA(e.target.value) }
                         placeholder="Masukkan nomor Handphone Anda"
                       />
                     </div>
