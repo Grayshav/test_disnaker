@@ -1,67 +1,81 @@
 // import React from "react";
 import "./style.css";
 
-const Navbar = () => {
-  return (
-    <div className="container-fluid header position-relative overflow-hidden p-0">
-      <nav className="navbar navbar-expand-lg fixed-top nav-light px-4 px-lg-5 py-4 py-lg-2">
-        <a href=" " className="navbar-brand p-0">
-          <h1 className="display-6 text-pink m-0 fw-bold ">
-            <i className="fas fa-envelope me-3 "></i>Testtesan
-          </h1>
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarCollapse"
-        >
-          <span className="fa fa-bars"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarCollapse">
-          <div className="navbar-nav ms-auto py-0">
-            <a href="index.html" className="nav-item nav-link">
-              Home
-            </a>
-            <a href="about.html" className="nav-item nav-link">
-              About
-            </a>
-            <a href="service.html" className="nav-item nav-link">
-              Services
-            </a>
-            <div className="nav-item dropdown">
-              <a
-                href="#"
-                className="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                Pages
+
+
+const navbar2 = () => {
+  return(
+      <>
+      <div id="app">
+      <nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
+          <div className="container">
+              <a className="navbar-brand" href="/">
+              <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdISwqZwg-y_7DjjhhRJk5tMP20lchdyAcUw&s"} width="100em" />
               </a>
-              <div className="dropdown-menu m-0">
-                <a href="feature.html" className="dropdown-item">
-                  Features
-                </a>
-                <a href="pricing.html" className="dropdown-item">
-                  Pricing
-                </a>
-                <a href="blog.html" className="dropdown-item">
-                  Blog
-                </a>
-                <a href="testimonial.html" className="dropdown-item">
-                  Testimonial
-                </a>
-                <a href="404.html" className="dropdown-item">
-                  404 Page
-                </a>
+              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                  <span className="navbar-toggler-icon"></span>
+              </button>
+
+              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                 
+                  <ul className="navbar-nav me-auto">
+                     <h6>Layanan Pengaduan</h6>
+                  </ul>
+                  
+                  <ul className="navbar-nav ms-auto">
+                      
+                    
+                              <li className="nav-item">
+                                  <a className="nav-link" href=""></a>
+                              </li>
+                        
+                              <li className="nav-item">
+                                  <a className="nav-link" href=""></a>
+                              </li>
+                        
+                          <li className="nav-item ">
+                              <a  className="nav-link " href="#" role="button"  aria-haspopup="true" aria-expanded="false">
+                             Program & Kegiatan
+                              </a>
+                          </li>
+                          <li className="nav-item ">
+                              <a  className="nav-link " href="#" role="button"  aria-haspopup="true" aria-expanded="false">
+                              Berita
+                              </a>
+                          </li>
+                          <li className="nav-item ">
+                              <a  className="nav-link " href="#" role="button"  aria-haspopup="true" aria-expanded="false">
+                              Layanan
+                              </a>
+                          </li>
+                          <li className="nav-item ">
+                              <a  className="nav-link " href="#" role="button"  aria-haspopup="true" aria-expanded="false">
+                              Kelembagaan
+                              </a>
+                          </li>
+                          <li className="nav-item ">
+                              <a  className="nav-link " href="#" role="button"  aria-haspopup="true" aria-expanded="false">
+                              Pemberdayaan
+                              </a>
+                          </li>
+                          <li className="nav-item ">
+                              <a  className="nav-link " href="#" role="button"  aria-haspopup="true" aria-expanded="false">
+                              Kontak
+                              </a>
+                          </li>
+                    
+                  </ul>
               </div>
-            </div>
-            <a href="contact.html" className="nav-item nav-link">
-              Contact Us
-            </a>
           </div>
-        </div>
       </nav>
-    </div>
-  );
-};
-export default Navbar;
+
+      <main className="py-4">
+         
+      </main>
+  </div>
+      </>
+  )
+}
+
+export default navbar2;
+

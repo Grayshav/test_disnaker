@@ -3,8 +3,10 @@ import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Home from "./page/Home";
+import Pengadu from "./component/dashboard/PengaduIndex";
+import PengaduanLayanan from "./component/dashboard/PengaduanLayananIndex";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Form from "./page/Form";
+import Form from "./page/Form/index";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +16,14 @@ const router = createBrowserRouter([
   {
     path: "/form-pengaduan",
     element: <Form />,
+  },
+  {
+    path: "/pengadu",
+    element: <Pengadu />,
+  },
+  {
+    path: "/pengaduan",
+    element: <PengaduanLayanan />,
   },
 ]);
 

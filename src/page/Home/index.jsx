@@ -1,7 +1,7 @@
 // import React from "react";
 import features01 from "../../assets/features01.png";
 import sty01 from "../../assets/sty01.png";
-import Navbar from "../../component/Navbar";
+import Navbar from "../../component/Navbar/index";
 import Footer from "../../component/Footer";
 import { useNavigate } from "react-router-dom";
 // import About from "../About";
