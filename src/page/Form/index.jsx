@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../component/Navbar/index";
-import "./navbar.css";
+import "./style.css";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../component/Footer";
 
 const Form2 = () => {
   const [step, setStep] = useState(1);
@@ -17,7 +18,7 @@ const Form2 = () => {
   const [error, setError] = useState(null);
   const [pengaduList, setPengaduList] = useState([]);
   const [kategoriList, setKategoriList] = useState([]);
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/pengadu")
@@ -30,11 +31,11 @@ const Form2 = () => {
     fetch("http://127.0.0.1:8000/api/kategori")
       .then((res) => res.json())
       .then((data) => {
-        console.log('Fetched kategoriList:', data);
-        if(Array.isArray(data)) {
+        console.log("Fetched kategoriList:", data);
+        if (Array.isArray(data)) {
           setKategoriList(data);
-        } else{
-          console.log('Data is not an Array:', data);
+        } else {
+          console.log("Data is not an Array:", data);
         }
       })
       .catch((err) => console.log(err));
@@ -63,7 +64,7 @@ const Form2 = () => {
           no_wa: formData.no_wa,
         }),
       });
-    console.log("Response", response);
+      console.log("Response", response);
       if (!response.ok)
         throw new Error(`HTTP error ! Status ${response.status}`);
       setStep(2);
@@ -89,9 +90,9 @@ const Form2 = () => {
       if (!response.ok) throw new Error("Gagal Submit Tiket");
       const result = await response.json();
       alert("Data Berhasil di simpan");
-      Navigate("/pengadu");
+      navigate("/pengadu");
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       alert(error.message);
     }
   };
@@ -99,7 +100,7 @@ const Form2 = () => {
   return (
     <>
       <Navbar />
-      <div className="container-fluid mt-5 px-md-5 px-lg-1 px-xl-5 py-5 ">
+      <div className="container-fluid mt-6 px-md-5 px-lg-1 px-xl-5 py-5">
         <div className="card card0 border-0">
           <div className="row d-flex">
             <div className="col-lg-6">
@@ -184,8 +185,6 @@ const Form2 = () => {
                         placeholder="Masukkan File Anda"
                       />
                     </div>
-        
-                    
 
                     <div className="form-group row mt-5">
                       <button
@@ -200,15 +199,16 @@ const Form2 = () => {
               </div>
             </div>
           </div>
-          <div className="bg-blue py-4">
+          {/* <div className="bg-blue py-4">
             <div className="row px-3">
               <small className="ml-4 ml-sm-5 mb-2">
                 Copyright &copy; 2024. All rights reserved.
               </small>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
+      <Footer />
     </>
   );
 };
