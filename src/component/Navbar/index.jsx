@@ -14,6 +14,10 @@ const Navbar2 = () => {
     navigate("/");
   };
 
+  const navigateSearch = () => {
+    navigate('/cari-tiket')
+  }
+
   const navigateTentang = () => {
     navigate("/tentang-kami");
   };
@@ -74,6 +78,16 @@ const Navbar2 = () => {
                     aria-expanded="false"
                   >
                     Pengaduan
+                  </button>
+                </li>
+                <li className="nav-item">
+                  <button
+                    onClick={navigateSearch}
+                    className="nav-link"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Cek Status
                   </button>
                 </li>
                 <li className="nav-item">

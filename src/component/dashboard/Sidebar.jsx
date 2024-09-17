@@ -6,7 +6,7 @@ const Sidebar = () => {
         <>
             <nav id="sidebar">
                 <div className="sidebar-header">
-                    <h3>Pengaduan Layanan</h3>
+                    <a href='/' className='nav-link'><h3>Pengaduan Layanan</h3></a>
                 </div>
                 <ul className="list-unstyled components">
                     <p>2024</p>

@@ -15,7 +15,7 @@ const Pengadu = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        setDataPengadu(data);
+        setDataPengadu(data.data);
       } catch (error) {
         setError(`Error | status: ${error.message}`);
       } finally {
@@ -59,13 +59,13 @@ const Pengadu = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {dataPengadu.map((Pengadu) => (
-                      <tr key={Pengadu.id}>
-                        <td>{Pengadu.nik}</td>
-                        <td>{Pengadu.name}</td>
-                        <td>{Pengadu.no_wa}</td>
+                    {dataPengadu.map((pengadu) => 
+                      <tr key={pengadu.id}>
+                        <td>{pengadu.nik}</td>
+                        <td>{pengadu.name}</td>
+                        <td>{pengadu.no_wa}</td>
                       </tr>
-                    ))}
+                    )}
                   </tbody>
                 </table>
               </div>

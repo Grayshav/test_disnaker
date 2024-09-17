@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "./page/Form/index";
 import Kontak from "./page/Kontak";
 import TentangKami from "./page/TentangKami";
+import CariTiket from "./page/Form/CariTiket";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/pengaduan",
     element: <PengaduanLayanan />,
+  },
+  {
+    path: "/cari-tiket",
+    element: <CariTiket />,
   },
   {
     path: "/tentang-kami",
